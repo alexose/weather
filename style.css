@@ -44,6 +44,11 @@ h1{
     float:left;
 }
 
+h1 svg {
+    fill: #aaa;
+    margin: 0 0 -3px 10px;
+}
+
 div#spinner{
     float:left;
     background-image:url('spinner.gif');
