@@ -15,34 +15,75 @@ $(document).ready(function () {
         if (hash !== "" && hash !== storage) {
             load();
             return;
-        } else if (storage) {
+        } else {
             window.location.hash = storage;
             name = storage;
             src = ls.getItem("src") || src;
+            init(name, src);
         }
+    } else {
+        init(name, src);
     }
 
-    init(name, src);
+    function reverseGeocode(coords, cb) {
+        var json = {
+            url: `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude},${coords.longitude}&sensor=true&key=AIzaSyC4r-uswXP03h4BlTovUcN-78PfL51r2u4`,
+            selector: ".results :first-child .formatted_address",
+        };
 
-    function getLocation() {
+        var string = btoa(JSON.stringify(json));
+
+        $.ajax({
+            url: "https://sieve.alexose.com?callback=?",
+            data: {json: string},
+            dataType: "jsonp",
+            success: function (result) {
+                window.location.hash = result[0].split(" ").join("_");
+            },
+            complete: function () {
+                $("#spinner").hide();
+            },
+        });
+    }
+
+    function getLocation(cb) {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
+            navigator.geolocation.getCurrentPosition(
+                function (result) {
+                    // Success!  Let's hit that reverse geocoder
+                    console.log(result.coords);
+                    reverseGeocode(result.coords, cb);
+                },
+                function (e) {
+                    cb(value);
+                }
+            );
         } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
+            cb(value);
         }
     }
 
     function init(name, src) {
         $("body").attr("id", name);
 
-        const location = getLocation();
-
-        var editable = $('<span contenteditable="true">boop</span>');
+        var editable = $('<span contenteditable="true"></span>')
+            .text(name.split("_").join(" "))
+            .keydown(function (e) {
+                if (e.keyCode === 13) {
+                    $(this).trigger("blur");
+                }
+            })
+            .blur(function (e) {
+                window.location.hash = e.target.innerText.split(" ").join("_");
+            });
 
         var geolocate = $(
             '<svg id="geolocate" height="24" width="24" viewBox="0 0 24 24"><path d="M21 3 3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"></path></svg>'
-        ).click(function () {
-            console.log("huh");
+        ).click(() => {
+            $("#spinner").show();
+            getLocation(() => {
+                $("#spinner").hide();
+            });
         });
 
         $("h1#header").empty().append("<span>Six day forecast for </span>").append(editable).append(geolocate);
