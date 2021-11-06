@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var name = "Boston",
         src =
-            "http://forecast.weather.gov/meteograms/Plotter.php?lat=42.35843&lon=-71.05977&wfo=BOX&zcode=MAZ015&gset=20&gdiff=10&unit=0&tinfo=EY5&ahour=0&pcmd=1101111111111000000000000000000000000000000000000000000000&lg=en&indu=1!1!1&dd=0&bw=0&hrspan=48&pqpfhr=6&psnwhr=6";
+            "https://forecast.weather.gov/meteograms/Plotter.php?lat=42.35843&lon=-71.05977&wfo=BOX&zcode=MAZ015&gset=20&gdiff=10&unit=0&tinfo=EY5&ahour=0&pcmd=1101111111111000000000000000000000000000000000000000000000&lg=en&indu=1!1!1&dd=0&bw=0&hrspan=48&pqpfhr=6&psnwhr=6";
 
     var ls = window.localStorage;
     if (ls) {
@@ -127,7 +127,7 @@ $(document).ready(function () {
                 lng: ".location .lng",
             },
             then: {
-                url: "http://forecast.weather.gov/MapClick.php?lat={{lat}}&lon={{lng}}&unit=0&lg=english&FcstType=graphical",
+                url: "https://forecast.weather.gov/MapClick.php?lat={{lat}}&lon={{lng}}&unit=0&lg=english&FcstType=graphical",
                 cache: 60 * 60 * 24 * 7 * 4,
                 engine: "jquery",
                 selector: "$('img[usemap=\"#MouseVal\"]').attr('src');",
@@ -146,7 +146,7 @@ $(document).ready(function () {
                     return;
                 }
 
-                src = "http://forecast.weather.gov/" + result;
+                src = "https://forecast.weather.gov/" + result;
 
                 init(loc, src);
 
