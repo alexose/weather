@@ -1,10 +1,6 @@
-
-img{
-    float:left;
-    width: 32%;
-}
-img.bar{
-    width: 96%;
+img {
+    float: left;
+    width: 24%;
 }
 
 body {
@@ -15,15 +11,15 @@ body.resized {
     width: 2450px;
 }
 
-body.resized img{
+body.resized img {
     width: 800px;
 }
 
-body.resized img.bar{
+body.resized img.bar {
     width: 2400px;
 }
 
-.frame{
+.frame {
     display: none;
 }
 
@@ -31,17 +27,17 @@ body.resized img.bar{
     cursor: pointer;
 }
 
-#frame-0{
+#frame-0 {
     display: block;
 }
 
-.message{
+.message {
     margin-left: 2em;
     float: right;
 }
 
-h1{
-    float:left;
+h1 {
+    float: left;
 }
 
 h1 svg {
@@ -50,16 +46,30 @@ h1 svg {
     margin: 0 0 -3px 10px;
 }
 
-div#spinner{
-    float:left;
-    background-image:url('spinner.gif');
-    display:none;
+div#spinner {
+    float: left;
+    background-image: url("spinner.gif");
+    display: none;
     height: 36px;
     width: 36px;
     margin: 17px 40px;
 }
 
 fieldset {
-    border : 0;
+    border: 0;
     margin-top: 16px;
+}
+
+table.bar {
+    clear: left;
+    width: 96%;
+}
+table.bar td {
+    padding: 0 10px;
+}
+table.bar td:nth-child(even) {
+    background-color: #8e8e8e;
+}
+table.bar td:nth-child(odd) {
+    background-color: #e8e8e8;
 }
