@@ -8,7 +8,7 @@ body {
 }
 
 body.resized {
-    width: 2450px;
+    width: 3250px;
 }
 
 body.resized img {
@@ -16,7 +16,7 @@ body.resized img {
 }
 
 body.resized img.bar {
-    width: 2400px;
+    width: 3200px;
 }
 
 .frame {
