@@ -1,22 +1,15 @@
 img {
     float: left;
-    width: 24%;
+    width: 32%;
 }
 
 body {
     width: 99%;
 }
 
-body.resized {
-    width: 3250px;
-}
-
-body.resized img {
-    width: 800px;
-}
-
+body.resized,
 body.resized img.bar {
-    width: 3200px;
+    width: 2304px;
 }
 
 .frame {
@@ -63,6 +56,8 @@ fieldset {
 table.bar {
     clear: left;
     width: 96%;
+    border-collapse: collapse;
+    margin: 4px 0;
 }
 table.bar td {
     padding: 0 10px;
